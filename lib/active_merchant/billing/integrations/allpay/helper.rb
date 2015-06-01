@@ -57,6 +57,14 @@ module ActiveMerchant #:nodoc:
           # 多筆請以井號分隔 (#)
           mapping :item_name, 'ItemName'
 
+          # 支付寶
+          mapping :alipay_item_name, "AlipayItemName"
+          mapping :alipay_item_counts, "AlipayItemCounts"
+          mapping :alipay_item_price, "AlipayItemPrice"
+          mapping :email, "Email"
+          mapping :phone_no, "PhoneNo"
+          mapping :user_name, "UserName"
+
           def initialize(order, account, options = {})
             super
             add_field 'MerchantID', ActiveMerchant::Billing::Integrations::Allpay.merchant_id
