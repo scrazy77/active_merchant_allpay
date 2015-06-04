@@ -57,6 +57,9 @@ module ActiveMerchant #:nodoc:
           # 多筆請以井號分隔 (#)
           mapping :item_name, 'ItemName'
 
+          # 信用卡
+          mapping :language, "Language"
+
           # 支付寶
           mapping :alipay_item_name, "AlipayItemName"
           mapping :alipay_item_counts, "AlipayItemCounts"
