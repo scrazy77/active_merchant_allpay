@@ -29,6 +29,7 @@ module ActiveMerchant #:nodoc:
 
         PAYMENT_TYPE        = 'aio'
 
+        mattr_accessor :refund_url
         mattr_accessor :service_url
         mattr_accessor :merchant_id
         mattr_accessor :hash_key
@@ -44,6 +45,20 @@ module ActiveMerchant #:nodoc:
               'http://payment-stage.allpay.com.tw/Cashier/AioCheckOut'
             when :test
               'http://payment-stage.allpay.com.tw/Cashier/AioCheckOut'
+            else
+              raise StandardError, "Integration mode set to an invalid value: #{mode}"
+          end
+        end
+
+        def self.refund_url
+          mode = ActiveMerchant::Billing::Base.integration_mode
+          case mode
+            when :production
+              'https://payment.allpay.com.tw/Cashier/AioChargeback'
+            when :development
+              'http://payment-stage.allpay.com.tw/Cashier/AioChargeback'
+            when :test
+              'http://payment-stage.allpay.com.tw/Cashier/AioChargeback'
             else
               raise StandardError, "Integration mode set to an invalid value: #{mode}"
           end
