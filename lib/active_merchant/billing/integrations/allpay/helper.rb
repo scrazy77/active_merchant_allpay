@@ -80,11 +80,11 @@ module ActiveMerchant #:nodoc:
 
           def encrypted_data
 
-            url_encode_data = ActiveMerchant::Billing::Integrations::Allpay.fetch_url_encode_data(@fields)
+            url_encrypted_data = ActiveMerchant::Billing::Integrations::Allpay.fetch_url_encode_data(@fields)
 
             binding.pry if ActiveMerchant::Billing::Integrations::Allpay.debug
 
-            add_field 'CheckMacValue', Digest::MD5.hexdigest(url_encode_data).upcase
+            add_field 'CheckMacValue', url_encrypted_data
           end
 
         end

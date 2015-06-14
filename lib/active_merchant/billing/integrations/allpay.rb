@@ -81,7 +81,8 @@ module ActiveMerchant #:nodoc:
           hash_raw_data = "HashKey=#{ActiveMerchant::Billing::Integrations::Allpay.hash_key}&#{raw_data}&HashIV=#{ActiveMerchant::Billing::Integrations::Allpay.hash_iv}"
           url_encode_data = self.url_encode(hash_raw_data)
           url_encode_data.downcase!
-          url_encode_data
+
+          Digest::MD5.hexdigest(url_encode_data).upcase
         end
 
         # Allpay .NET url encoding
