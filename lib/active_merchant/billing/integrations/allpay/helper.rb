@@ -33,6 +33,10 @@ module ActiveMerchant #:nodoc:
           mapping :payment_info_url, 'PaymentInfoURL'
           # ATM, CVS 序號頁面回傳網址 (Client Side)
           mapping :payment_redirect_url, 'ClientRedirectURL'
+          # ATM Expiration Setting by Days
+          mapping :expire_date, "ExpireDate"
+          # CVS Expiration Setting by Minutes
+          mapping :stop_expire_date, "StoreExpireDate"
 
           ### Allpay 專屬介面
 
