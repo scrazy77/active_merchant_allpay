@@ -72,6 +72,9 @@ module ActiveMerchant #:nodoc:
           mapping :phone_no, "PhoneNo"
           mapping :user_name, "UserName"
 
+          # 銀聯卡
+          mapping :union_pay, "UnionPay"
+
           def initialize(order, account, options = {})
             super
             add_field 'MerchantID', ActiveMerchant::Billing::Integrations::Allpay.merchant_id
