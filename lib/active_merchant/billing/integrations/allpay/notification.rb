@@ -45,12 +45,12 @@ module ActiveMerchant #:nodoc:
             raw_data = params_copy.sort.map do |x, y|
               "#{x}=#{y}"
             end.join('&')
-            logger.info("raw_data:#{raw_data}")
+            Rails.logger.info("raw_data:#{raw_data}")
             hash_raw_data = "HashKey=#{ActiveMerchant::Billing::Integrations::Allpay.hash_key}&#{raw_data}&HashIV=#{ActiveMerchant::Billing::Integrations::Allpay.hash_iv}"
-            logger.info("hash_raw_data:#{hash_raw_data}")
+            Rails.logger.info("hash_raw_data:#{hash_raw_data}")
             url_endcode_data = (CGI::escape(hash_raw_data)).downcase
-            logger.info("url_encode_data:#{url_encode_data}")
-            logger.info("post checksum=#{checksum} compute checksum=#{Digest::MD5.hexdigest(url_endcode_data)}")
+            Rails.logger.info("url_encode_data:#{url_encode_data}")
+            Rails.logger.info("post checksum=#{checksum} compute checksum=#{Digest::MD5.hexdigest(url_endcode_data)}")
             (Digest::MD5.hexdigest(url_endcode_data) == checksum.to_s.downcase)
           end
 
